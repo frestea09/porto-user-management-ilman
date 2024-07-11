@@ -6,7 +6,7 @@ interface UserStore {
   users: any[] | null;
   addUser: (user: any) => void;
   editUser: (user: any) => void;
-  deleteUser: (id: number) => void;
+  deleteUser: (id: any) => void;
   fetchUsers: any;
 }
 
