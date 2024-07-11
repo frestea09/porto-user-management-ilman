@@ -1,7 +1,8 @@
+import Footer from "@/components/molecules/footer/Footer";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-
+import footer from "@/content/footer.json";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +18,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+        <AppRouterCacheProvider>
+          {children}
+          <Footer name={footer.name} />
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

@@ -4,7 +4,6 @@ import { SectionFormModal } from "../section-form-modal/SectionFormModal";
 import { style } from "./ModalComponent.styles";
 import sectionDescriptionModal from "@/content/sectionDesctiptionModa.json";
 import sectionFormModal from "@/content/sectionFormModal.json";
-import { useUserStore } from "@/store/users/userStore";
 export const ModalComponent = ({
   open,
   handleClose,
@@ -29,6 +28,7 @@ export const ModalComponent = ({
         <Fade in={open}>
           <Box sx={style}>
             <SectionDescriptionModal
+              editUserId={editUserId}
               handleClose={handleClose}
               descriptionModal={sectionDescriptionModal.descriptionSection}
             />
@@ -36,7 +36,7 @@ export const ModalComponent = ({
               editUserId={editUserId}
               buttonLabel={sectionFormModal.buttonLabel}
               labelNotificationRequired={
-                sectionDescriptionModal.labelNotificationRequired
+                sectionFormModal.labelNotificationRequired
               }
               onSubmit={onSubmit}
             />

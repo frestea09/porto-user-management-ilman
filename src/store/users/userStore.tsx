@@ -1,3 +1,5 @@
+import { fetcher } from "@/utils/api/jsonplaceholder/fetcher";
+import axios from "axios";
 import create from "zustand";
 
 interface UserStore {
@@ -19,7 +21,6 @@ export const useUserStore = create<UserStore>((set) => ({
     set((state) => ({
       users: state.users
         ? state.users.map((user) => {
-            console.log("hello", updatedUser);
             return user.id == updatedUser.id ? updatedUser : user;
           })
         : null,
@@ -29,8 +30,8 @@ export const useUserStore = create<UserStore>((set) => ({
       users: state.users ? state.users.filter((user) => user.id !== id) : null,
     })),
   fetchUsers: async () => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const data = await response.json();
+    const response = await fetcher("/users");
+    const data = response;
     const usersWithPictures = data.map((user: any) => ({
       ...user,
       picture: `https://picsum.photos/200/300?random=${Math.random()}`,

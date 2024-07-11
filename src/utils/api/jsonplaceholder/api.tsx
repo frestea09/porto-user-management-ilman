@@ -2,7 +2,6 @@
 import { axioInstance } from "./axiosInstance";
 export const createData = async (url: string, data: any) => {
   const response = await axioInstance.post(url, data);
-  console.log(response);
   return response.data;
 };
 

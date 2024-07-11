@@ -4,10 +4,16 @@ import sectionHeaderModal from "@/content/sectionHeaderModal.json";
 export const SectionDescriptionModal = ({
   handleClose,
   descriptionModal,
-}: any) => {
+  editUserId,
+}: {
+  handleClose?: void;
+  descriptionModal: string;
+  editUserId?: string;
+}) => {
   return (
     <>
       <SectionHeaderModal
+        editUserId={editUserId}
         handleClose={handleClose}
         title={sectionHeaderModal.title}
       />

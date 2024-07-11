@@ -1,12 +1,11 @@
 "use client";
-import { Button, CircularProgress, Modal, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { useFetch } from "@/utils/api/jsonplaceholder/useFetch";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { GridColDef } from "@mui/x-data-grid";
 import { useUserStore } from "@/store/users/userStore";
 import { useEffect, useState } from "react";
-
 import Box from "@mui/material/Box";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { SubmitHandler } from "react-hook-form";
 import { SectionTitle } from "@/components/organisms/section-title/SectionTitle";
 import sectiontitlecontent from "@/content/sectiontitle.json";
 import sectionDescription from "@/content/sectionDescription.json";
@@ -18,7 +17,7 @@ import { InputsFormUser } from "@/components/organisms/section-form-modal/Sectio
 
 export default function Home() {
   const { isLoading } = useFetch("/users");
-  const [editUserId, setEditUserId] = useState();
+  const [editUserId, setEditUserId] = useState<any>();
   const { users, deleteUser, fetchUsers, addUser, editUser } = useUserStore();
   useEffect(() => {
     fetchUsers();
@@ -65,6 +64,7 @@ export default function Home() {
     editUserId ? editUser(data) : addUser(data);
     setOpen(false);
   };
+  console.log(users);
   return (
     <Box sx={pageStyles.container}>
       <SectionTitle

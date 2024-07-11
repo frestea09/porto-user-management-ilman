@@ -10,4 +10,5 @@ export type InputsFormUser = {
   website: string;
   address: string;
   company: string;
+  picture?: string;
 };

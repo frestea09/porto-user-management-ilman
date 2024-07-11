@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { InputsFormUser } from "./SectionFormModal.type";
 import { styles } from "./SectionFormModal.styles";
 import { useUserStore } from "@/store/users/userStore";
+import Image from "next/image";
 export const SectionFormModal = ({
   onSubmit,
   buttonLabel,
@@ -27,6 +28,24 @@ export const SectionFormModal = ({
         onSubmit={handleSubmit(onSubmit)}
         sx={styles.container}
       >
+        {editUserId && (
+          <>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              alignContent={"center"}
+              alignItems={"center"}
+            >
+              <img
+                src={editUserId && findById(users, editUserId)?.picture}
+                width={150}
+                height={150}
+                style={{ objectFit: "cover" }}
+                alt={findById(users, editUserId)?.picture}
+              />
+            </Box>
+          </>
+        )}
         <Box display={"none"}>
           <TextField
             id="outlined-basic"
@@ -35,6 +54,18 @@ export const SectionFormModal = ({
             inputProps={{ readOnly: true }}
             defaultValue={editUserId ? editUserId : users?.length}
             {...register("id")}
+          />
+          <TextField
+            id="outlined-basic"
+            label="picture"
+            variant="outlined"
+            inputProps={{ readOnly: true }}
+            defaultValue={
+              editUserId
+                ? findById(users, editUserId)?.picture
+                : `https://picsum.photos/200/300?random=${Math.random()}`
+            }
+            {...register("picture")}
           />
         </Box>
 
@@ -54,17 +85,17 @@ export const SectionFormModal = ({
           defaultValue={editUserId && findById(users, editUserId)?.username}
           {...register("username", { required: true })}
         />
-        {errors.username && <span>{labelNotificationRequired}</span>}
 
         <TextField
           id="outlined-basic"
           label="Email"
           variant="outlined"
           defaultValue={editUserId && findById(users, editUserId)?.email}
-          {...register("email", { required: true })}
+          {...register("email", {
+            required: true,
+            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+          })}
         />
-        {errors.email && <span>{labelNotificationRequired}</span>}
-
         <TextField
           id="outlined-basic"
           label="Phone"
@@ -72,7 +103,6 @@ export const SectionFormModal = ({
           defaultValue={editUserId && findById(users, editUserId)?.phone}
           {...register("phone", { required: true })}
         />
-        {errors.phone && <span>{labelNotificationRequired}</span>}
         <TextField
           id="outlined-basic"
           label="Website"
@@ -80,22 +110,18 @@ export const SectionFormModal = ({
           defaultValue={editUserId && findById(users, editUserId)?.website}
           {...register("website", { required: true })}
         />
-        {errors.website && <span>{labelNotificationRequired}</span>}
         <TextField
           id="outlined-basic"
           label="Address"
           variant="outlined"
           {...register("address")}
         />
-        {errors.address && <span>{labelNotificationRequired}</span>}
         <TextField
           id="outlined-basic"
           label="Company"
           variant="outlined"
           {...register("company")}
         />
-
-        {errors.company && <span>{labelNotificationRequired}</span>}
 
         <Button onClick={handleSubmit(onSubmit)} variant="contained">
           {editUserId ? "Edit" : buttonLabel}

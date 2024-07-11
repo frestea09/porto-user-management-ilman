@@ -2,7 +2,7 @@ import { Box, Typography, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { styles } from "./SectionHeaderModal.style";
 
-export const SectionHeaderModal = ({ handleClose, title }: any) => {
+export const SectionHeaderModal = ({ handleClose, title, editUserId }: any) => {
   return (
     <>
       <Box display={"flex"} justifyContent={"space-between"}>
@@ -12,7 +12,7 @@ export const SectionHeaderModal = ({ handleClose, title }: any) => {
           component="h2"
           sx={styles.title}
         >
-          {title}
+          {editUserId ? "Edit User" : title}
         </Typography>
         <Box sx={styles.containerButton}>
           <Button variant="text" onClick={handleClose}>
