@@ -64,7 +64,6 @@ export default function Home() {
     editUserId ? editUser(data) : addUser(data);
     setOpen(false);
   };
-  console.log(users);
   return (
     <Box sx={pageStyles.container}>
       <SectionTitle

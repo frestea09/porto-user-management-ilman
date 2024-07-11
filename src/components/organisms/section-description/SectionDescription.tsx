@@ -11,7 +11,15 @@ export const SectionDescription = ({
 }) => {
   return (
     <>
-      <Box display={"flex"} alignItems={"flex-start"}>
+      <Box
+        display={"flex"}
+        alignItems={"flex-start"}
+        flexDirection={"column"}
+        gap={1}
+      >
+        <Typography variant="h6" fontWeight={600}>
+          {"Description"}
+        </Typography>
         <Typography variant="body1">{descriptionSection}</Typography>
       </Box>
       <Box>
