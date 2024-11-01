@@ -1,3 +1,4 @@
+// "use client";
 import Footer from "@/components/molecules/footer/Footer";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import type { Metadata } from "next";

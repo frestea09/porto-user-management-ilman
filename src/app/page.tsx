@@ -14,6 +14,7 @@ import { TableData } from "@/components/organisms/table-data/TableData";
 import { ModalComponent } from "@/components/organisms/ModalComponent/ModalComponent";
 import { pageStyles } from "./page.styles";
 import { InputsFormUser } from "@/components/organisms/section-form-modal/SectionFormModal.type";
+import { useRouter } from "next/router";
 
 export default function Home() {
   const { isLoading } = useFetch("/users");
