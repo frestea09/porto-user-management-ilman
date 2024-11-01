@@ -6,9 +6,11 @@ export default function CostumeRouterButtom({
   linkUrl,
   colorButton,
   lableButton,
+  prosessHandle,
 }: {
   linkUrl: string;
   colorButton: any;
+  prosessHandle: any;
   lableButton: string;
 }) {
   const router = useRouter();
@@ -17,7 +19,9 @@ export default function CostumeRouterButtom({
       <Button
         variant="contained"
         color={colorButton}
-        onClick={() => router.push(linkUrl)}
+        onClick={() => {
+          router.push(linkUrl);
+        }}
       >
         {lableButton}
       </Button>

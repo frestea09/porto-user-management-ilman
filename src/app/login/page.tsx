@@ -2,36 +2,23 @@
 "use client";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import {
-  Container,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Link,
-} from "@mui/material";
+import { Container, Paper, Typography, TextField, Button } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import CostumeRouterButtom from "@/components/organisms/section-description/CostumeButtonRouter";
+import { useUserStore } from "@/store/users/userStore";
 
 export default function Login() {
-  //   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const { users } = useUserStore(); // Get users from the store
+  console.log(users);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // TODO: Implement login logic here
-    // Misalnya, melakukan panggilan API untuk memverifikasi kredensial
-
-    // Contoh logika login yang sederhana
-    if (email && password) {
-      // Jika login berhasil, arahkan ke halaman beranda
-      //   router.push("/"); // Redirect to home page after login
-    } else {
-      // Tampilkan pesan kesalahan jika login gagal
-      alert("Please enter your email and password.");
-    }
+    // Check if email and password match any user
+    const user = users?.find(
+      (user) => user.email === email && user.password === password
+    );
   };
 
   return (
@@ -78,8 +65,10 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-
-          <CostumeRouterButtom linkUrl="/" lableButton="Sign In" />
+          <CostumeRouterButtom
+            linkUrl={email == "admin" && password == "admin" ? "/" : "/login"}
+            lableButton="Sign In"
+          />
         </form>
       </Paper>
     </Container>
