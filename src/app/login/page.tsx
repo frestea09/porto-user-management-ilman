@@ -11,7 +11,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { users } = useUserStore(); // Get users from the store
-  console.log(users);
   const handleSubmit = async () => {
     // Check if email and password match any user
     const user = users?.find(
